@@ -1,8 +1,8 @@
 """The file that handles the JWT i.e. signing, encoding, decoding and returning JWTs"""
 import os
-from time import datetime
+from time import time
 
-import jwt
+from jwt import encode
 from dotenv import find_dotenv, load_dotenv
 
 
@@ -24,3 +24,22 @@ def token_response(token: str):
     return {
         "access_token": token
     }
+
+
+def signJWT(userID: str):
+    """A function that encodes a signJWT
+
+    Args:
+        userID (str): The user ID
+
+    Returns:
+        dict: The token
+    """
+    payload = {
+        "userID": userID,
+        "expiration_date": time() + 600
+    }
+
+    token = encode(payload, JWT_SECRET, JWT_ALGORITHM)
+
+    return token_response(token)
