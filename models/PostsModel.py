@@ -1,0 +1,1 @@
+"""The Posts model file"""
