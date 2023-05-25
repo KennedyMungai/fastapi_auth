@@ -6,7 +6,7 @@ import uvicorn
 app = FastAPI()
 
 
-@app.get("/", name="Main Root", description="The main endpoint for the app")
+@app.get("/", name="Main Root", description="The main endpoint for the app", tags=['Root'])
 async def root() -> dict[str, str]:
     """The main endpoint for the app"""
     return {"message": "Hello World"}
