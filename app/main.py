@@ -52,5 +52,20 @@ async def get_single_post_endpoint(post_id: int):
     return posts[post_id]
 
 
+@app.post("/posts", name="Create Post", description="Create a new post", tags=['Posts'])
+async def create_new_post_endpoint(_post: PostsSchema):
+    """Endpoint for creating a new post
+
+    Args:
+        _post (PostsSchema): The post to create
+
+    Returns:
+        dict: The post
+    """
+    _post.id = len(posts) + 1
+    posts.append(_post.dict())
+    return {"info": "Post Added"}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0000000", port=8000, reload=True)
