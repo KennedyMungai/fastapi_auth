@@ -2,6 +2,7 @@
 import uvicorn
 from fastapi import FastAPI, status
 
+from auth.jwt_handler import signJWT
 from models.PostsModel import PostsSchema
 from models.user_model import UserLoginSchema, UserSchema
 
