@@ -62,7 +62,7 @@ async def get_single_post_endpoint(post_id: int):
     tags=['Posts'],
     status_code=status.HTTP_201_CREATED
 )
-async def create_new_post_endpoint(_post: PostsSchema):
+async def create_new_post_endpoint(_post: PostsSchema, dependencies=[Depends(jwtBearer())]):
     """Endpoint for creating a new post
 
     Args:
