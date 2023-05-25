@@ -32,5 +32,11 @@ async def root() -> dict[str, str]:
     return {"message": "Hello World"}
 
 
+@app.get("/posts", name="Get Posts", description="Get all posts", tags=['Posts'])
+async def get_all_posts_endpoint():
+    """Get all posts endpoint"""
+    return {"data": posts}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0000000", port=8000, reload=True)
