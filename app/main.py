@@ -89,5 +89,20 @@ async def user_signup_endpoint(_user: UserSchema = Body(default=None)):
     return signJWT(_user.email)
 
 
+def check_user(_data: UserLoginSchema):
+    """Check if the user exists
+
+    Args:
+        _data (UserLoginSchema): The user data
+
+    Returns:
+        bool: True if the user exists
+    """
+    for user in users:
+        if user.email == _data.email and user.password == _data.password:
+            return True
+    return False
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0000000", port=8000, reload=True)
