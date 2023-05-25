@@ -24,6 +24,7 @@ posts = [
     }
 ]
 
+users = []
 
 @app.get("/", name="Main Root", description="The main endpoint for the app", tags=['Root'])
 async def root() -> dict[str, str]:
