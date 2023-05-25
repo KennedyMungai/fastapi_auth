@@ -77,6 +77,14 @@ async def create_new_post_endpoint(_post: PostsSchema):
 
 @app.post('/user/signup', tags=['Users'])
 async def user_signup_endpoint(_user: UserSchema = Body(default=None)):
+    """The endpoint for the user signup
+
+    Args:
+        _user (UserSchema, optional): The User Id. Defaults to Body(default=None).
+
+    Returns:
+        _type_: _description_
+    """
     users.append(_user)
     return signJWT(_user.email)
 
