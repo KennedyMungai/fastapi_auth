@@ -36,7 +36,6 @@ class UserLoginSchema(BaseModel):
         """The config file for the class """
         the_schema = {
             "user_demo": {
-                "name": "Somebody's Name",
                 "email": "chicken@wings.com",
                 "password": "password"
             }
