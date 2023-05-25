@@ -1,6 +1,6 @@
 """The main file for the app"""
 import uvicorn
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, Body
 
 from auth.jwt_handler import signJWT
 from models.PostsModel import PostsSchema
@@ -73,6 +73,12 @@ async def create_new_post_endpoint(_post: PostsSchema):
     _post.id = len(posts) + 1
     posts.append(_post.dict())
     return {"info": "Post Added"}
+
+
+@app.post('/user/signup', tags=['Users'])
+async def user_signup_endpoint(_user: UserSchema = Body(default=None)):
+    users.append(_user)
+    return signJWT(_user.email)
 
 
 if __name__ == "__main__":
