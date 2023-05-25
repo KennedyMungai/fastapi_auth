@@ -2,7 +2,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-from models.PostsModel import PostsModel
+from models.PostsModel import PostsSchema
 
 app = FastAPI()
 
@@ -33,4 +33,4 @@ async def root() -> dict[str, str]:
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0000000", port=8000)
+    uvicorn.run(app, host="0000000", port=8000, reload=True)
