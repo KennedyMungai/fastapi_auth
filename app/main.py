@@ -4,7 +4,8 @@ from fastapi import FastAPI
 
 from models.PostsModel import PostsSchema
 
-app = FastAPI()
+app = FastAPI(title="FastAPI Auth Example",
+              description="A simple fastapi backend app for messing around with authentication")
 
 posts = [
     {
