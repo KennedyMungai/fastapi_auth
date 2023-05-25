@@ -104,5 +104,21 @@ def check_user(_data: UserLoginSchema):
     return False
 
 
+@app.post('/user/login', tags=['Users'], name="User Login", description="An endpoint to check User Login")
+async def user_login_endpoint(_user: UserLoginSchema = Body(default=None)):
+    """Defined the user login endpoint
+
+    Args:
+        _user (UserLoginSchema, optional): The user Login details. Defaults to Body(default=None).
+
+    Returns:
+        _type_: _description_
+    """
+    if check_user(_user):
+        return signJWT(_user.email)
+    else:
+        return {"error": "Invalid Credentials"}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0000000", port=8000, reload=True)
