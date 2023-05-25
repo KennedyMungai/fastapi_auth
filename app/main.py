@@ -3,6 +3,7 @@ import uvicorn
 from fastapi import FastAPI, status
 
 from models.PostsModel import PostsSchema
+from models.user_model import UserLoginSchema, UserSchema
 
 app = FastAPI(title="FastAPI Auth Example",
               description="A simple fastapi backend app for messing around with authentication")
