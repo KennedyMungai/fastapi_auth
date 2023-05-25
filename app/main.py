@@ -1,6 +1,6 @@
 """The main file for the app"""
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 
 from models.PostsModel import PostsSchema
 
@@ -52,7 +52,7 @@ async def get_single_post_endpoint(post_id: int):
     return posts[post_id]
 
 
-@app.post("/posts", name="Create Post", description="Create a new post", tags=['Posts'])
+@app.post("/posts", name="Create Post", description="Create a new post", tags=['Posts'], status_code=status.HTTP_201_CREATED)
 async def create_new_post_endpoint(_post: PostsSchema):
     """Endpoint for creating a new post
 
