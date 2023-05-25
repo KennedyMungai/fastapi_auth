@@ -1,6 +1,7 @@
 """The file which contains the bearer logic"""
 from fastapi import HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from auth.jwt_handler import decodeJWT
 
 
 class jwtBearer(HTTPBearer):
@@ -9,3 +10,24 @@ class jwtBearer(HTTPBearer):
 
     async def __call__(self, request: Request):
         credentials: HTTPAuthorizationCredentials = await super(jwtBearer, self).__call__(request)
+
+        if credentials:
+            if not credentials.scheme == "Bearer":
+                raise HTTPException(
+                    status_code=403, detail="Invalid authentication scheme.")
+            if not self.verify_jwt(credentials.credentials):
+                raise HTTPException(
+                    status_code=403, detail="Invalid token or expired token.")
+            return credentials.credentials
+        else:
+            raise HTTPException(
+                status_code=403, detail="Invalid authentication scheme.")
+
+        def verify_jwt(self, jwtoken: str):
+            isTokenValid: bool = False      # A false flag
+            payload = decodeJWT(jwtoken)
+
+            if (payload):
+                isTokenValid = True
+
+            return isTokenValid
