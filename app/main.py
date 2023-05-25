@@ -1,6 +1,6 @@
 """The main file for the app"""
 import uvicorn
-from fastapi import FastAPI, status, Body, Depends
+from fastapi import Body, Depends, FastAPI, status
 
 from auth.jwt_handler import signJWT
 from models.PostsModel import PostsSchema
