@@ -104,7 +104,12 @@ def check_user(_data: UserLoginSchema):
     return False
 
 
-@app.post('/user/login', tags=['Users'], name="User Login", description="An endpoint to check User Login")
+@app.post(
+    '/user/login',
+    tags=['Users'],
+    name="User Login",
+    description="An endpoint to check User Login"
+)
 async def user_login_endpoint(_user: UserLoginSchema = Body(default=None)):
     """Defined the user login endpoint
 
