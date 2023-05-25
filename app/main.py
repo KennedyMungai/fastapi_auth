@@ -52,7 +52,13 @@ async def get_single_post_endpoint(post_id: int):
     return posts[post_id]
 
 
-@app.post("/posts", name="Create Post", description="Create a new post", tags=['Posts'], status_code=status.HTTP_201_CREATED)
+@app.post(
+    "/posts",
+    name="Create Post",
+    description="Create a new post",
+    tags=['Posts'],
+    status_code=status.HTTP_201_CREATED
+)
 async def create_new_post_endpoint(_post: PostsSchema):
     """Endpoint for creating a new post
 
