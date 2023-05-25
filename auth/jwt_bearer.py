@@ -1,6 +1,7 @@
 """The file which contains the bearer logic"""
 from fastapi import HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
 from auth.jwt_handler import decodeJWT
 
 
