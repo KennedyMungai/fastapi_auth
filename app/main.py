@@ -2,10 +2,10 @@
 import uvicorn
 from fastapi import Body, Depends, FastAPI, status
 
+from auth.jwt_bearer import jwtBearer
 from auth.jwt_handler import signJWT
 from models.PostsModel import PostsSchema
 from models.user_model import UserLoginSchema, UserSchema
-from auth.jwt_bearer import jwtBearer
 
 app = FastAPI(title="FastAPI Auth Example",
               description="A simple fastapi backend app for messing around with authentication")
