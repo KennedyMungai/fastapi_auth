@@ -38,5 +38,18 @@ async def get_all_posts_endpoint():
     return {"data": posts}
 
 
+@app.get("/posts/{post_id}", name="Get Post", description="Get a single post", tags=['Posts'])
+async def get_single_post_endpoint(post_id: int):
+    """Endpoint for retrieving a single post
+
+    Args:
+        post_id (int): The id of the post
+
+    Returns:
+        dict: The post
+    """
+    return posts[post_id]
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0000000", port=8000, reload=True)
