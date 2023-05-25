@@ -1,7 +1,7 @@
 """The main file for the app"""
 from fastapi import FastAPI
 import uvicorn
-
+from models.PostsModel import PostsModel
 
 app = FastAPI()
 
