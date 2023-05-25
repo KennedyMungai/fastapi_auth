@@ -2,7 +2,7 @@
 import os
 from time import time
 
-from jwt import encode
+from jwt import encode, decode
 from dotenv import find_dotenv, load_dotenv
 
 
@@ -43,3 +43,19 @@ def signJWT(userID: str):
     token = encode(payload, JWT_SECRET, JWT_ALGORITHM)
 
     return token_response(token)
+
+
+def decodeJWT(token: str):
+    """The function to decode JWTs
+
+    Args:
+        token (str): The token to be decoded
+
+    Returns:
+        _type_: _description_
+    """
+    try:
+        decode_token = decode(token, JWT_SECRET, JWT_ALGORITHM)
+        return decode_token if decode_token['expires'] >= time() else None
+    except:
+        return {}
